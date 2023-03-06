@@ -1,0 +1,45 @@
+// ==UserScript==
+// @name         DanbooruOnclickDownloader
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  try to take over the world!
+// @author       Remi
+// @match        https://danbooru.donmai.us/*
+// @grant        none
+// @icon         https://danbooru.donmai.us/packs/static/images/danbooru-logo-128x128-ea111b6658173e847734.png
+// @run-at       document-ready
+// @require      https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js
+// ==/UserScript==
+
+(function () {
+    'use strict';
+
+    // Your code here...
+
+    let picContainers = $('.post-preview-link');
+
+    let count =1;
+    for (let container of picContainers) {
+
+        let pic = $(container).find("img");
+        if(typeof pic === "undefined"){
+            console.log(count);
+            console.log("undefined"); 
+        }else{
+            let picOriginalLink = pic.attr("src");
+            let prefix = picOriginalLink.substring(0, 22);
+            let suffix = picOriginalLink.substring(30);
+            let picLink = prefix + suffix;
+            let link = picLink.replace("jpg", "png");
+
+            let tags = pic.attr('title');
+            console.log(count);
+            console.log("link: " + link);
+            console.log("tags: " + tags);
+        }
+
+
+        
+        count ++;
+    }
+})();

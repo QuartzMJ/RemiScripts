@@ -65,7 +65,7 @@
             let tags = $(pic).attr('title');
             let regex = /\b(\w+\([^)]*granblue_fantasy\))\W*/;
             let match = tags.match(regex);
-            if (match != null & tags.indexOf("girl") !== -1) {
+            if (match != null & (tags.indexOf("girl") !== -1 || tags.indexOf("boy") == -1 ) ) {
                 let start = match.index;
                 let end = start + match[1].length;
 
